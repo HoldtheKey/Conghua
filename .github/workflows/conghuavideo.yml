@@ -22,7 +22,7 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【葱花视频账号1-视频观看】'
+      - name: '运行 【葱花视频-自动刷视频】'
         if: env.RONGHUA_VIDEO
         run: |
           node Task/RONGHUA_VIDEO.js
