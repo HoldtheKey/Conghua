@@ -11,9 +11,6 @@ jobs:
   build:
     env:
       RONGHUA_VIDEO: ${{ secrets.RONGHUA_VIDEO }}
-      RONGHUA_VIDEO2: ${{ secrets.RONGHUA_VIDEO2 }}
-      RONGHUA_VIDEO3: ${{ secrets.RONGHUA_VIDEO3 }}
-      RONGHUA_VIDEO4: ${{ secrets.RONGHUA_VIDEO4 }}
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
@@ -30,23 +27,4 @@ jobs:
         run: |
           node Task/RONGHUA_VIDEO.js
         env:
-          YOUTH_READ: ${{ secrets.RONGHUA_VIDEO }}
-
-      - name: '运行 【葱花视频账号1-视频观看】'
-        if: env.RONGHUA_VIDEO2
-        run: |
-          node Task/RONGHUA_VIDEO.js
-        env:
-          YOUTH_READ: ${{ secrets.RONGHUA_VIDEO2 }}
-      - name: '运行 【葱花视频账号2-视频观看】'
-        if: env.RONGHUA_VIDEO3
-        run: |
-          node Task/RONGHUA_VIDEO.js
-        env:
-          YOUTH_READ: ${{ secrets.RONGHUA_VIDEO3 }}
-      - name: '运行 【葱花视频账号2-视频观看】'
-        if: env.RONGHUA_VIDEO4
-        run: |
-          node Task/RONGHUA_VIDEO.js
-        env:
-          YOUTH_READ: ${{ secrets.RONGHUA_VIDEO4 }}
+          RONGHUA_READ: ${{ secrets.RONGHUA_VIDEO }}
