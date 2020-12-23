@@ -1,0 +1,52 @@
+name: 葱花自动刷视频
+
+on:
+  workflow_dispatch:
+  # 账号越多文章越多，运行一次消耗的时间也越长，文章和视频不要一块运行，cron自己看着写
+  schedule:
+     - cron: '*/10 * * * *'
+  watch:
+    types: started
+jobs:
+  build:
+    env:
+      RONGHUA_VIDEO: ${{ secrets.RONGHUA_VIDEO }}
+      RONGHUA_VIDEO2: ${{ secrets.RONGHUA_VIDEO2 }}
+      RONGHUA_VIDEO3: ${{ secrets.RONGHUA_VIDEO3 }}
+      RONGHUA_VIDEO4: ${{ secrets.RONGHUA_VIDEO4 }}
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: npm install
+        run: |
+          npm install
+      - name: '运行 【葱花视频账号1-视频观看】'
+        if: env.RONGHUA_VIDEO
+        run: |
+          node Task/RONGHUA_VIDEO.js
+        env:
+          YOUTH_READ: ${{ secrets.RONGHUA_VIDEO }}
+
+      - name: '运行 【葱花视频账号1-视频观看】'
+        if: env.RONGHUA_VIDEO2
+        run: |
+          node Task/RONGHUA_VIDEO.js
+        env:
+          YOUTH_READ: ${{ secrets.RONGHUA_VIDEO2 }}
+      - name: '运行 【葱花视频账号2-视频观看】'
+        if: env.RONGHUA_VIDEO3
+        run: |
+          node Task/RONGHUA_VIDEO.js
+        env:
+          YOUTH_READ: ${{ secrets.RONGHUA_VIDEO3 }}
+      - name: '运行 【葱花视频账号2-视频观看】'
+        if: env.RONGHUA_VIDEO4
+        run: |
+          node Task/RONGHUA_VIDEO.js
+        env:
+          YOUTH_READ: ${{ secrets.RONGHUA_VIDEO4 }}
